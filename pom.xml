@@ -35,6 +35,11 @@
             <artifactId>jedis</artifactId>
             <version>4.3.1</version>
         </dependency>
+        <dependency>
+            <groupId>info.debatty</groupId>
+            <artifactId>java-lsh</artifactId>
+            <version>0.12</version>
+        </dependency>
     </dependencies>
 
 </project>
