@@ -43,33 +43,6 @@ public class GuavaBloomDemo {
     }
 
     @Test
-    public void mergeDemo() {
-        BloomFilter<String> bloomFilter1 = BloomFilter.create(Funnels.stringFunnel(StandardCharsets.UTF_8), EXP_INSERTS, EXP_FPP);
-        BloomFilter<String> bloomFilter2 = BloomFilter.create(Funnels.stringFunnel(StandardCharsets.UTF_8), EXP_INSERTS, EXP_FPP);
-
-        List<String> first = KEYS.subList(0, 50);
-        List<String> second = KEYS.subList(50, 100);
-
-        first.forEach(bloomFilter1::put);
-        second.forEach(bloomFilter2::put);
-
-
-        if (!bloomFilter1.isCompatible(bloomFilter2)) {
-            throw new IllegalStateException("Filters not compatible");
-        }
-        bloomFilter1.putAll(bloomFilter2);
-
-        long firstHitCount = first.stream()
-                .filter(bloomFilter1)
-                .count();
-        long secondHitCount = second.stream()
-                .filter(bloomFilter1)
-                .count();
-
-        assertThat(firstHitCount + secondHitCount).isEqualTo(first.size() + second.size());
-    }
-
-    @Test
     public void overfillDemo() {
         BloomFilter<String> bloomFilter = BloomFilter.create(Funnels.stringFunnel(StandardCharsets.UTF_8), EXP_INSERTS, EXP_FPP);
 
@@ -95,5 +68,32 @@ public class GuavaBloomDemo {
         System.out.println(String.format("Bloom filter predicted fpp: %f", bloomFilter.expectedFpp()));
 
         //Overfilling a guava bloom filter degrades its expected False Positive probability.
+    }
+
+    @Test
+    public void mergeDemo() {
+        BloomFilter<String> bloomFilter1 = BloomFilter.create(Funnels.stringFunnel(StandardCharsets.UTF_8), EXP_INSERTS, EXP_FPP);
+        BloomFilter<String> bloomFilter2 = BloomFilter.create(Funnels.stringFunnel(StandardCharsets.UTF_8), EXP_INSERTS, EXP_FPP);
+
+        List<String> first = KEYS.subList(0, 50);
+        List<String> second = KEYS.subList(50, 100);
+
+        first.forEach(bloomFilter1::put);
+        second.forEach(bloomFilter2::put);
+
+
+        if (!bloomFilter1.isCompatible(bloomFilter2)) {
+            throw new IllegalStateException("Filters not compatible");
+        }
+        bloomFilter1.putAll(bloomFilter2);
+
+        long firstHitCount = first.stream()
+                .filter(bloomFilter1)
+                .count();
+        long secondHitCount = second.stream()
+                .filter(bloomFilter1)
+                .count();
+
+        assertThat(firstHitCount + secondHitCount).isEqualTo(first.size() + second.size());
     }
 }

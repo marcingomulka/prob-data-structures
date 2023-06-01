@@ -4,5 +4,6 @@ https://www.geeksforgeeks.org/introduction-to-the-probabilistic-data-structure/
 https://scotthelme.co.uk/frequency-analysis-on-hundreds-of-billions-of-reports-at-report-uri-top-k/
 https://www.usenix.org/system/files/conference/atc18/atc18-gong.pdf
 https://iq.opengenus.org/minhash/
+https://medium.com/ai-ml-at-symantec/ai-ml-security-pro-tips-understanding-minhash-in-a-security-context-3dd0dd2ffe8
 https://towardsdatascience.com/hyperloglog-a-simple-but-powerful-algorithm-for-data-scientists-aed50fe47869
 http://antirez.com/news/75

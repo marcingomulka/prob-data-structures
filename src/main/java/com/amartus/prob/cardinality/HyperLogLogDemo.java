@@ -36,12 +36,13 @@ public class HyperLogLogDemo {
     }
 
 
-    private void consumeEachWordInFile(String fileName, Consumer<String> collector) throws IOException {
+    private void forEachWordInFile(String fileName, Consumer<String> consumer) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             reader.lines().forEach(line ->{
                 for (String word : line.split("\\s+")) {
-                    word = word.replaceAll("[,)(.\"\\-!?]", "").toLowerCase();
-                    collector.accept(word);
+                    word = word.replaceAll("[,)(.\"\\-!?]", "")
+                            .toLowerCase();
+                    consumer.accept(word);
                 }
             });
         }
@@ -51,7 +52,7 @@ public class HyperLogLogDemo {
     public void countWords() throws IOException {
 
         Set<String> uniqueWords = new HashSet<>();
-        consumeEachWordInFile("PanTadeusz.txt", word -> {
+        forEachWordInFile("PanTadeusz.txt", word -> {
             //standard set of words
             uniqueWords.add(word);
             //hyperloglog
@@ -70,7 +71,7 @@ public class HyperLogLogDemo {
     public void mergeSets() throws IOException {
         Set<String> uniqueWords1 = new HashSet<>();
 
-        consumeEachWordInFile("PanTadeusz.txt", word -> {
+        forEachWordInFile("PanTadeusz.txt", word -> {
             uniqueWords1.add(word);
             client.pfadd(PAN_TADEUSZ_WORDS, word);
         });
@@ -78,7 +79,7 @@ public class HyperLogLogDemo {
         System.out.println(String.format("Total words: %d", uniqueWords1.size()));
 
         Set<String> uniqueWords2 = new HashSet<>();
-        consumeEachWordInFile("KrzyzacyT1.txt", word -> {
+        forEachWordInFile("KrzyzacyT1.txt", word -> {
             uniqueWords2.add(word);
             client.pfadd(KRZYZACY_WORDS, word);
         });
