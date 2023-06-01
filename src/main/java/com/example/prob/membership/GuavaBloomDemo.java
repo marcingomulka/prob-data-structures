@@ -1,4 +1,4 @@
-package com.amartus.prob.membership;
+package com.example.prob.membership;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;

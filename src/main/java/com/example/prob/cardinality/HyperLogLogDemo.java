@@ -1,4 +1,4 @@
-package com.amartus.prob.cardinality;
+package com.example.prob.cardinality;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

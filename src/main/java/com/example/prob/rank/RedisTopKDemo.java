@@ -1,4 +1,4 @@
-package com.amartus.prob.rank;
+package com.example.prob.rank;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

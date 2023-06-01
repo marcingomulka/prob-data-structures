@@ -1,4 +1,4 @@
-package com.amartus.prob.similarity;
+package com.example.prob.similarity;
 
 
 import info.debatty.java.lsh.MinHash;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.amartus.prob.similarity.MinHashDemo.Color.*;
+import static com.example.prob.similarity.MinHashDemo.Color.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MinHashDemo {
@@ -28,7 +28,7 @@ public class MinHashDemo {
         Set<Color> set1 = Set.of(RED, BLACK, BLUE, YELLOW);
         Set<Color> set2 = Set.of(WHITE, GREEN, YELLOW);
 
-        MinHash minhash = new MinHash(0.1, values().length);
+        MinHash minhash = new MinHash(0.1, Color.values().length);
 
         var patternSignature = minhash.signature(pattern.stream().map(Color::ordinal).collect(Collectors.toSet()));
         var set1Signature = minhash.signature(set1.stream().map(Color::ordinal).collect(Collectors.toSet()));

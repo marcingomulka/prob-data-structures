@@ -1,4 +1,4 @@
-package com.amartus.prob.membership;
+package com.example.prob.membership;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
