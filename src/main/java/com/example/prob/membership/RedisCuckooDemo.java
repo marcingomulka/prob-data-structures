@@ -107,7 +107,7 @@ public class RedisCuckooDemo {
         long cuckooFalsePositive = absent.stream()
                 .filter(item -> client.cfExists(CUCKOO_1, item))
                 .count();
-        System.out.println(String.format("Cuckoo filter false positives found: %d, ratio:%f", cuckooFalsePositive, (double)cuckooFalsePositive/(double)TOTAL_ELEMENTS));
+        System.out.println(String.format("Cuckoo filter false positives found: %d, ratio:%f", cuckooFalsePositive, (double)cuckooFalsePositive/(double)(EXP_INSERTS * 3)));
         System.out.println(String.format("CF info: %s", client.cfInfo(CUCKOO_1)));
 
 
