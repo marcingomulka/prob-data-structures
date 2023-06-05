@@ -65,7 +65,6 @@ public class RedisCuckooDemo {
 
 
         List<String> present = KEYS.subList(0, EXP_INSERTS);
-        List<String> absent = KEYS.subList(EXP_INSERTS, TOTAL_ELEMENTS);
 
         present.forEach(item -> client.cfAdd(CUCKOO_1, item));
         long bloomPositive = present.stream()
@@ -83,11 +82,6 @@ public class RedisCuckooDemo {
         assertThat(client.cfExists(CUCKOO_1, present.get(2))).isFalse();
 
         System.out.println(String.format("CF info: %s", client.cfInfo(CUCKOO_1)));
-
-        long cuckooFalsePositive = absent.stream()
-                .filter(item -> client.cfExists(CUCKOO_1, item))
-                .count();
-        System.out.println(String.format("Cuckoo filter false positives found: %d, ratio:%f", cuckooFalsePositive, (double)cuckooFalsePositive/(double)TOTAL_ELEMENTS));
     }
 
 
