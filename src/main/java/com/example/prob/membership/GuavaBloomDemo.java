@@ -46,7 +46,7 @@ public class GuavaBloomDemo {
     public void overfillDemo() {
         BloomFilter<String> bloomFilter = BloomFilter.create(Funnels.stringFunnel(StandardCharsets.UTF_8), EXP_INSERTS, EXP_FPP);
 
-        List<String> BIG_KEYS = IntStream.range(0, EXP_INSERTS * 3)
+        List<String> BIG_KEYS = IntStream.range(0, TOTAL_ELEMENTS * 3)
                 .boxed()
                 .map(i -> String.format("%d:%s", i, UUID.randomUUID()))
                 .toList();
